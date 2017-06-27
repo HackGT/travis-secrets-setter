@@ -21,7 +21,7 @@ puts %x(
 
 	git remote add upstream "https://#{ENV['GH_TOKEN']}@github.com/HackGT/biodomes.git"
 	git fetch upstream
-	git reset upstream/master
+	git reset --hard upstream/master
 )
 
 raise 'Could not set up git repo!' if $?.exitstatus != 0
