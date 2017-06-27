@@ -1,4 +1,7 @@
 sudo: false
-script: 
-  - gem install travis
-  - ruby set-variables.rb
+script:
+- gem install travis
+- ruby set-variables.rb
+env:
+  matrix:
+    secure: ApbtrfN4El8ZDstoy+8sirULeyBpgKZ/Re9X1t82Vj7b+cbrnNTpf1iKy/eedfz2RFBk6jzNR8Fgu6e2vfXlG7Sdefh9IW/xihW7ID9gl5prdp+BwUwNHz+OEZ9UncfH5jn3ne5jAukMCW54VrgCK2QDb4q3bn+4nNA7xeFY8P0H8sVT2N68y6yviCue/ro421natShtWIub9JblwSy2Xn1DhcaNMXiwJruVjKOmtsrBgM4vsIYqxVT+1Eeahj3K/V4imI5a6HX3XrKH/L4+Rqc0m8AattPG096jQzrhvtrSZ0fPD99P5CspOZJBoy5qpJnOkSjEPaosYHABUNlkIy6OdtfDoC/uJ9pVNPx44Aa1hTSm6y7eUsGUhJsQlxu75AEB/hzdUsXFAfb47l3YzOs8/8XBbOg0RiykvbZlaYIZ0Sw6II1ZIkqyOftmGL/cnwp7DKrIvB88j/UQYENh0WLbDu0tEfb13ewptuEophFbmPGubIWyPrL+362olXZVZ0ygnCUMXgmsvFPobe8lVPk+2T7sl73LuyERmr448UHivm0lPiRExGvRDAzQb/hX+vpVOM+IAqB8ahpzW2cAUTfBEGwUG3wb0VD2h6l7NfAPwjPtD03jd/pDrWMdu1gGsfpzE8pi15y7XNQtAcflPEmr0qL4etxkeNoKfw18a34=
