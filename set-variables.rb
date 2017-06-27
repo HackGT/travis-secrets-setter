@@ -50,9 +50,11 @@ puts %x(
 	set -euox
 	cd biodomes
 	touch .
-	git add -A .
-	git commit -m 'Automated Commit: add new repos.'
-	git push -q upstream HEAD:master
+	if [[ -n $(git status -s) ]]; then
+		git add -A .
+		git commit -m 'Automated Commit: add new repos.'
+		git push -q upstream HEAD:master
+	fi
 )
 
 raise 'Could not push to git!' if $?.exitstatus != 0
