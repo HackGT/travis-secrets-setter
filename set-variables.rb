@@ -9,6 +9,7 @@ repos = Travis::Repository
 
 keys = [
 	'DOCKER_PASSWORD',
+	'TRAVIS_TOKEN',
 ]
 
 puts %x(
