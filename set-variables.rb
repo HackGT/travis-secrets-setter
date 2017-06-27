@@ -36,7 +36,7 @@ repos.each do |repo|
 	puts "Enabling project #{repo.slug}."
 	repo.enable
 
-	biodome_path = "biodomes/dev/#{File.basename repo.slug}"
+	biodome_path = "biodomes/dev/#{File.basename repo.slug.downcase}.yaml"
 	unless File.exist? biodome_path
 		puts 'Creating default config in biodomes.'
 		File.open biodome_path, 'w' do |file|
