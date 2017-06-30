@@ -1,6 +1,6 @@
 require 'travis'
 
-Travis.access_token = Travis.github_auth(ENV['GH_TOKEN'])
+Travis.github_auth(ENV['GH_TOKEN'])
 
 repos = Travis::Repository
 	.find_all(owner_name: 'HackGT')
@@ -8,7 +8,7 @@ repos = Travis::Repository
 	.select{|repo| Travis.user.admin_access.include?(repo)}
 
 keys = [
-	'DOCKER_PASSWORD',
+    'DOCKER_PASSWORD',
     'GH_TOKEN',
     'CLOUDFLARE_ZONE',
     'CLOUDFLARE_EMAIL',
