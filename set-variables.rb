@@ -1,6 +1,6 @@
 require 'travis'
 
-Travis.access_token = ENV['TRAVIS_TOKEN']
+Travis.access_token = Travis.github_auth(ENV['GH_TOKEN'])
 
 repos = Travis::Repository
 	.find_all(owner_name: 'HackGT')
@@ -9,7 +9,6 @@ repos = Travis::Repository
 
 keys = [
 	'DOCKER_PASSWORD',
-	'TRAVIS_TOKEN',
     'GH_TOKEN',
     'CLOUDFLARE_ZONE',
     'CLOUDFLARE_EMAIL',
