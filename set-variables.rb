@@ -10,7 +10,12 @@ repos = Travis::Repository
 keys = [
 	'DOCKER_PASSWORD',
 	'TRAVIS_TOKEN',
+    'GH_TOKEN',
+    'CLOUDFLARE_ZONE',
+    'CLOUDFLARE_EMAIL',
+    'CLOUDFLARE_AUTH',
 ]
+
 
 puts %x(
 	set -euox
