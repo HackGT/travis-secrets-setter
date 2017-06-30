@@ -43,7 +43,7 @@ repos.each do |repo|
 
   biodome_path = "biodomes/dev/#{File.basename repo.slug.downcase}.yaml"
 
-  next unless File.exist? biodome_path
+  next if File.exist? biodome_path
 
   puts 'Creating default config in biodomes.'
   File.open biodome_path, 'w' do |file|
