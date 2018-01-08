@@ -41,15 +41,16 @@ repos.each do |repo|
     puts "Setting env var '#{key}' on project '#{repo.slug}'"
     repo.env_vars.upsert(key, "'#{ENV[key]}'", public: false)
   end
+  # Disabled to conserve resources and since the vast majority of dev applications are unused
+  # Dev applications can still be manually created
+  # biodome_path = "biodomes/dev/#{File.basename repo.slug.downcase}.yaml"
 
-  biodome_path = "biodomes/dev/#{File.basename repo.slug.downcase}.yaml"
+  # next if File.exist? biodome_path
 
-  next if File.exist? biodome_path
-
-  puts 'Creating default config in biodomes.'
-  File.open biodome_path, 'w' do |file|
-    file.write("git: https://github.com/#{repo.slug}.git")
-  end
+  # puts 'Creating default config in biodomes.'
+  # File.open biodome_path, 'w' do |file|
+  #   file.write("git: https://github.com/#{repo.slug}.git")
+  # end
 end
 
 puts `
