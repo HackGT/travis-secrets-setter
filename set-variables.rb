@@ -1,11 +1,12 @@
 require 'travis'
 
-Travis.github_auth(ENV['GH_TOKEN'])
+Travis::Pro.access_token = ENV["ACCESS_TOKEN"]
 
-repos = Travis::Repository
-        .find_all(owner_name: 'HackGT')
-        .reject { |repo| repo.slug == 'HackGT/travis-secrets-setter' }
-        .select { |repo| Travis.user.admin_access.include?(repo) }
+user = Travis::Pro::User.current
+repos = user.repositories.sort_by(&:slug).select do |repo|
+  next false unless repo.owner_name == "HackGT"
+  true
+end
 
 keys = %w(
   DOCKER_PASSWORD
@@ -33,7 +34,7 @@ puts `
 raise 'Could not set up git repo!' if $?.exitstatus != 0
 
 repos.each do |repo|
-  puts "Enabling project #{repo.slug}."
+  puts "Enabling project #{repo.slug}. #{repo.active}"
   repo.enable
 
   # Set all the secrets
@@ -41,16 +42,6 @@ repos.each do |repo|
     puts "Setting env var '#{key}' on project '#{repo.slug}'"
     repo.env_vars.upsert(key, "'#{ENV[key]}'", public: false)
   end
-  # Disabled to conserve resources and since the vast majority of dev applications are unused
-  # Dev applications can still be manually created
-  # biodome_path = "biodomes/dev/#{File.basename repo.slug.downcase}.yaml"
-
-  # next if File.exist? biodome_path
-
-  # puts 'Creating default config in biodomes.'
-  # File.open biodome_path, 'w' do |file|
-  #   file.write("git: https://github.com/#{repo.slug}.git")
-  # end
 end
 
 puts `
